@@ -12,10 +12,11 @@ class ProductsFragment : Fragment() {
     private lateinit var binding: FragmentProductsBinding
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentProductsBinding.inflate(layoutInflater, container, false)
+        binding = FragmentProductsBinding.inflate(inflater, container, false)
         return binding.root
     }
 

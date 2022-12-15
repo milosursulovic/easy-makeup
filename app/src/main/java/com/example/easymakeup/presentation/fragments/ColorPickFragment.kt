@@ -7,15 +7,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.easymakeup.databinding.FragmentColorPickBinding
 
+
 class ColorPickFragment : Fragment() {
 
     private lateinit var binding: FragmentColorPickBinding
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentColorPickBinding.inflate(layoutInflater, container, false)
+        binding = FragmentColorPickBinding.inflate(inflater, container, false)
         return binding.root
     }
 }

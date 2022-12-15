@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_captureFragment_to_colorPickFragment"
             app:destination="@id/colorPickFragment" />
+        <argument
+            android:name="capturedImage"
+            app:argType="android.graphics.Bitmap" />
     </fragment>
     <fragment
         android:id="@+id/colorPickFragment"
