@@ -9,8 +9,6 @@ import android.util.AttributeSet
 import android.view.View
 import com.example.easymakeup.R
 
-private const val TAG = "debugTag"
-
 class StepView(context: Context, attrs: AttributeSet) : View(context, attrs) {
     private lateinit var ta: TypedArray
     var currentStep: Int = 0
