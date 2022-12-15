@@ -2,4 +2,11 @@
     <string name="app_name">Easy Makeup</string>
     <string name="take_selfie">Take selfie</string>
     <string name="dummy">Dummy</string>
+    <string name="try_again">TRY AGAIN</string>
+    <string name="next_step">NEXT STEP</string>
+    <string name="back">BACK</string>
+    <string name="buy">BUY</string>
+    <string name="choose_product">You need to choose product in order to buy it</string>
+    <string name="bought_successfully_1">You bought</string>
+    <string name="bought_successfully_2">successfully</string>
 </resources>

@@ -2,10 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/ep_light_gray_trans"
     android:orientation="horizontal"
     android:padding="32dp">
 
-    <com.google.android.material.textview.MaterialTextView
+    <TextView
         android:id="@+id/tv_1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -15,7 +16,7 @@
         android:textColor="@color/ep_white"
         android:textSize="30sp" />
 
-    <com.google.android.material.textview.MaterialTextView
+    <TextView
         android:id="@+id/tv_2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

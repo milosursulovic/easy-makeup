@@ -38,9 +38,9 @@ class StartFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == imageRequestCode && resultCode == Activity.RESULT_OK) {
-            val image = data?.extras?.get("data") as Bitmap
+            val capturedImage = data?.extras?.get("data") as Bitmap
             val bundle = Bundle().apply {
-                putParcelable("capturedImage", image)
+                putParcelable("capturedImage", capturedImage)
             }
             findNavController().navigate(R.id.action_startFragment_to_captureFragment, bundle)
         }

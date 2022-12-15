@@ -8,10 +8,10 @@
     tools:context=".presentation.fragments.StartFragment">
 
     <include
-        android:id="@+id/step_layout"
+        android:id="@+id/include_step_layout"
         layout="@layout/step_layout" />
 
-    <com.google.android.material.textview.MaterialTextView
+    <TextView
         android:id="@+id/tv_easy_makeup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,7 +21,7 @@
         app:layout_constraintBottom_toTopOf="@id/btn_take_selfie"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/step_layout" />
+        app:layout_constraintTop_toBottomOf="@id/include_step_layout" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_take_selfie"
