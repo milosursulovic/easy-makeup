@@ -6,12 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.easymakeup.R
 import com.example.easymakeup.databinding.FragmentProductsBinding
 import com.example.easymakeup.domain.model.Product
 import com.example.easymakeup.presentation.adapters.ProductsAdapter
+import com.example.easymakeup.presentation.view_models.ProductsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -19,6 +21,9 @@ import javax.inject.Inject
 class ProductsFragment : Fragment() {
 
     private lateinit var binding: FragmentProductsBinding
+
+    private val productsViewModel: ProductsViewModel by viewModels()
+
     private var cacheView: View? = null
     private var checkedProduct: Product? = null
 
@@ -36,6 +41,7 @@ class ProductsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        productsAdapter.differ.submitList(productsViewModel.getProducts())
         productsAdapter.setClickListener { itemView, product ->
             cacheView?.setBackgroundResource(0)
             itemView.setBackgroundResource(R.drawable.border)
