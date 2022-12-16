@@ -36,14 +36,4 @@
         app:layout_constraintStart_toEndOf="@id/iv_pick"
         app:layout_constraintTop_toTopOf="@id/iv_pick" />
 
-    <!--    <com.example.easymakeup.presentation.custom_views.StepView-->
-    <!--        xmlns:customstep="http://schemas.android.com/apk/res/com.example.easymakeup"-->
-    <!--        android:id="@+id/sv"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        customstep:current_step="2"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content" />-->
-
 </androidx.constraintlayout.widget.ConstraintLayout>
