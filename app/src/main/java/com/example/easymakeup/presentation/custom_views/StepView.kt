@@ -14,7 +14,7 @@ class StepView(context: Context, attrs: AttributeSet) : View(context, attrs) {
     private val linePaint = Paint()
     private val fillPaint = Paint()
 
-    private val paintMap = mutableMapOf<Int, Paint>(
+    private val paintMap = mutableMapOf(
         1 to strokePaint,
         2 to strokePaint,
         3 to strokePaint
@@ -59,27 +59,15 @@ class StepView(context: Context, attrs: AttributeSet) : View(context, attrs) {
         val heightSize = MeasureSpec.getSize(heightMeasureSpec);
 
         val width = when (widthMode) {
-            MeasureSpec.EXACTLY -> {
-                widthSize;
-            }
-            MeasureSpec.AT_MOST -> {
-                desiredWidth.coerceAtMost(widthSize);
-            }
-            else -> {
-                desiredWidth;
-            }
+            MeasureSpec.EXACTLY -> widthSize
+            MeasureSpec.AT_MOST -> desiredWidth.coerceAtMost(widthSize)
+            else -> desiredWidth
         }
 
         val height = when (heightMode) {
-            MeasureSpec.EXACTLY -> {
-                heightSize;
-            }
-            MeasureSpec.AT_MOST -> {
-                desiredHeight.coerceAtMost(heightSize);
-            }
-            else -> {
-                desiredHeight;
-            }
+            MeasureSpec.EXACTLY -> heightSize
+            MeasureSpec.AT_MOST -> desiredHeight.coerceAtMost(heightSize)
+            else -> desiredHeight
         }
 
         setMeasuredDimension(width, height);
