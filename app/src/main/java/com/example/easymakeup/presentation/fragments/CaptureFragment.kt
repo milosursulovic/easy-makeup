@@ -32,6 +32,7 @@ class CaptureFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.includeStepLayout.customStep.setStep(1)
         val args: CaptureFragmentArgs by navArgs()
         val capturedImage = args.capturedImage
         glide.load(capturedImage).into(binding.ivCapturedImage)

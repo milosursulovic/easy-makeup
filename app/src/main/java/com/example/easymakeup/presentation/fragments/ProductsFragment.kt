@@ -41,6 +41,7 @@ class ProductsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.includeStepLayout.customStep.setStep(3)
         productsAdapter.differ.submitList(productsViewModel.getProducts())
         productsAdapter.setClickListener { itemView, product ->
             cacheView?.setBackgroundResource(0)

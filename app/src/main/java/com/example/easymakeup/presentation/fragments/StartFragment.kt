@@ -18,6 +18,7 @@ class StartFragment : Fragment() {
     private lateinit var binding: FragmentStartBinding
     private val imageRequestCode = 100
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -29,6 +30,7 @@ class StartFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.includeStepLayout.customStep.setStep(0)
         binding.btnTakeSelfie.setOnClickListener {
             val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             startActivityForResult(cameraIntent, imageRequestCode)

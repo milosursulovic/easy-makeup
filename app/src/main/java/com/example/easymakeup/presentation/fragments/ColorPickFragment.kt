@@ -32,6 +32,7 @@ class ColorPickFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.includeStepLayout.customStep.setStep(2)
         val args: ColorPickFragmentArgs by navArgs()
         val capturedImage = args.capturedImage
         glide.load(capturedImage).into(binding.ivCapturedImage)

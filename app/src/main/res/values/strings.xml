@@ -9,4 +9,5 @@
     <string name="choose_product">You need to choose product in order to buy it</string>
     <string name="bought_successfully_1">You bought</string>
     <string name="bought_successfully_2">successfully</string>
+    <string name="step">STEP</string>
 </resources>
