@@ -63,7 +63,7 @@ class StepView(context: Context, attrs: AttributeSet) : View(context, attrs) {
                 widthSize;
             }
             MeasureSpec.AT_MOST -> {
-                Math.min(desiredWidth, widthSize);
+                desiredWidth.coerceAtMost(widthSize);
             }
             else -> {
                 desiredWidth;
@@ -75,7 +75,7 @@ class StepView(context: Context, attrs: AttributeSet) : View(context, attrs) {
                 heightSize;
             }
             MeasureSpec.AT_MOST -> {
-                Math.min(desiredHeight, heightSize);
+                desiredHeight.coerceAtMost(heightSize);
             }
             else -> {
                 desiredHeight;

@@ -2,7 +2,9 @@ package com.example.easymakeup.presentation.custom_views
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.View
+import androidx.appcompat.widget.AppCompatImageView
 
-class ImageColorPickView(context: Context, attrs: AttributeSet) : View(context, attrs) {
+class ImageColorPickView(context: Context, attrs: AttributeSet) :
+    AppCompatImageView(context, attrs) {
+
 }
