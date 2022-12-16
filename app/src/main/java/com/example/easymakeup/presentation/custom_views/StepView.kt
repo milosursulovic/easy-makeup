@@ -10,9 +10,19 @@ import android.view.View
 class StepView(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
     private var radius = 30f
-    private val strokePaint = Paint()
-    private val linePaint = Paint()
-    private val fillPaint = Paint()
+    private val strokePaint = Paint().apply {
+        color = Color.WHITE
+        strokeWidth = 10f
+        style = Paint.Style.STROKE
+    }
+    private val linePaint = Paint().apply {
+        color = Color.WHITE
+        style = Paint.Style.FILL
+    }
+    private val fillPaint = Paint().apply {
+        color = Color.WHITE
+        strokeWidth = 10f
+    }
 
     private val paintMap = mutableMapOf(
         1 to strokePaint,
@@ -31,22 +41,6 @@ class StepView(context: Context, attrs: AttributeSet) : View(context, attrs) {
             }
         }
         invalidate()
-    }
-
-    init {
-        strokePaint.run {
-            color = Color.WHITE
-            strokeWidth = 10f
-            style = Paint.Style.STROKE
-        }
-        fillPaint.run {
-            color = Color.WHITE
-            style = Paint.Style.FILL
-        }
-        linePaint.run {
-            color = Color.WHITE
-            strokeWidth = 10f
-        }
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
