@@ -11,16 +11,16 @@ import com.example.easymakeup.presentation.custom_views.utils.Measures
 class StepView(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
     private var radius = 30f
-    private val strokePaint = Paint().apply {
+    private val strokePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = Color.WHITE
         strokeWidth = 10f
         style = Paint.Style.STROKE
     }
-    private val linePaint = Paint().apply {
+    private val linePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = Color.WHITE
         style = Paint.Style.FILL
     }
-    private val fillPaint = Paint().apply {
+    private val fillPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = Color.WHITE
         strokeWidth = 10f
     }
@@ -52,8 +52,6 @@ class StepView(context: Context, attrs: AttributeSet) : View(context, attrs) {
     }
 
     override fun onDraw(canvas: Canvas?) {
-        super.onDraw(canvas)
-
         canvas?.run {
             drawCircle(
                 width / 6f,

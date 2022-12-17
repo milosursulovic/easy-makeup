@@ -13,10 +13,10 @@ class ColorView(context: Context, attrs: AttributeSet) : View(context, attrs) {
     private val rectPaint = Paint().apply {
         color = Color.TRANSPARENT
     }
-    private val circlePaint = Paint().apply {
+    private val circlePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = Color.TRANSPARENT
     }
-    private val borderCirclePaint = Paint().apply {
+    private val borderCirclePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = Color.TRANSPARENT
         style = Paint.Style.STROKE
         strokeWidth = 5f
@@ -41,7 +41,6 @@ class ColorView(context: Context, attrs: AttributeSet) : View(context, attrs) {
     fun getColor(): Int = circlePaint.color
 
     override fun onDraw(canvas: Canvas?) {
-        super.onDraw(canvas)
         canvas?.run {
             drawRect(rect, rectPaint)
             drawCircle(width / 2f, height / 2f, 100f, circlePaint)

@@ -14,7 +14,7 @@ class ImageColorPickerView(context: Context, attrs: AttributeSet) :
     private var imageX: Float? = 0f
     private var imageY: Float? = 0f
 
-    private val circlePaint = Paint().apply {
+    private val circlePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         style = Paint.Style.STROKE
         strokeWidth = 3f
         color = Color.TRANSPARENT
@@ -40,6 +40,7 @@ class ImageColorPickerView(context: Context, attrs: AttributeSet) :
                 val bitmapHeight = bitmap?.height
                 imageX = viewX!! * bitmapWidth!! / viewWidth
                 imageY = viewY!! * bitmapHeight!! / viewHeight
+                //ovde pravi problem - out of bounds, nije jos fixano
                 val croppedBitmap =
                     Bitmap.createBitmap(
                         bitmap,
