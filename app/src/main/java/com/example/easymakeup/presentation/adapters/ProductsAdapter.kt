@@ -8,9 +8,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.easymakeup.databinding.ProductItemBinding
 import com.example.easymakeup.domain.model.Product
-import java.lang.ref.WeakReference
 
-class ProductsAdapter() : RecyclerView.Adapter<ProductsAdapter.ProductsViewHolder>() {
+class ProductsAdapter : RecyclerView.Adapter<ProductsAdapter.ProductsViewHolder>() {
 
     private val callback = object : DiffUtil.ItemCallback<Product>() {
         override fun areItemsTheSame(oldItem: Product, newItem: Product): Boolean {
@@ -26,7 +25,6 @@ class ProductsAdapter() : RecyclerView.Adapter<ProductsAdapter.ProductsViewHolde
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductsViewHolder =
         ProductsViewHolder(
-            WeakReference(this@ProductsAdapter),
             ProductItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
 
@@ -39,17 +37,14 @@ class ProductsAdapter() : RecyclerView.Adapter<ProductsAdapter.ProductsViewHolde
 
     override fun getItemCount(): Int = differ.currentList.size
 
-    class ProductsViewHolder(
-        private val productsAdapter: WeakReference<ProductsAdapter>,
+    inner class ProductsViewHolder(
         val binding: ProductItemBinding
     ) :
         RecyclerView.ViewHolder(binding.root) {
         init {
             binding.root.setOnClickListener {
-                productsAdapter.get()?.run {
-                    clickListener?.let {
-                        it(binding.root, differ.currentList[adapterPosition])
-                    }
+                clickListener?.let {
+                    it(binding.root, differ.currentList[adapterPosition])
                 }
             }
         }
