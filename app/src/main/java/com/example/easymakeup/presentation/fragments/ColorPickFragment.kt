@@ -2,8 +2,6 @@ package com.example.easymakeup.presentation.fragments
 
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
-import android.graphics.Color
-import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -26,7 +24,6 @@ class ColorPickFragment : Fragment() {
     lateinit var glide: RequestManager
 
     private var bitmap: Bitmap? = null
-    private var pixelColor = Color.TRANSPARENT
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,36 +40,21 @@ class ColorPickFragment : Fragment() {
         binding.includeStepLayout.customStep.setStep(2)
         val args: ColorPickFragmentArgs by navArgs()
         val capturedImage = args.capturedImage
-        glide.load(capturedImage).into(binding.ivCapturedImage)
+        glide.load(capturedImage).into(binding.imageColorPickerView)
 
-        binding.ivCapturedImage.setOnTouchListener { v, event ->
-
-            val viewX = event.x
-            val viewY = event.y
-
-            val viewWidth = binding.ivCapturedImage.width
-            val viewHeight = binding.ivCapturedImage.height
-
-            bitmap = (binding.ivCapturedImage.drawable as? BitmapDrawable)?.bitmap
-
-            val bitmapWidth = bitmap?.width
-            val bitmapHeight = bitmap?.height
-
-            val imageX = viewX * bitmapWidth!! / viewWidth
-            val imageY = viewY * bitmapHeight!! / viewHeight
-
-            pixelColor = bitmap?.getPixel(imageX.toInt(), imageY.toInt()) ?: 0
-
-            binding.colorView.setColor(pixelColor)
-            binding.sliderView.setColor(pixelColor)
+        binding.imageColorPickerView.setChosenColorListener { color ->
+            binding.colorView.setColor(color)
+            binding.sliderView.setColor(color)
 
             binding.sliderView.visibility = View.VISIBLE
             binding.colorView.visibility = View.VISIBLE
-
-            false
         }
 
-        binding.sliderView.setClickListener { color ->
+        binding.sliderView.setMinusClickListener { color ->
+            binding.colorView.setColor(color)
+        }
+
+        binding.sliderView.setPlusClickListener { color ->
             binding.colorView.setColor(color)
         }
 
