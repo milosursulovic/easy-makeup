@@ -41,7 +41,8 @@ class ImageColorPickerView(context: Context, attrs: AttributeSet) :
                 imageX = viewX!! * bitmapWidth!! / viewWidth
                 imageY = viewY!! * bitmapHeight!! / viewHeight
                 if (imageX!!.toInt() - 25 > 0 && imageY!!.toInt() - 25 > 0 &&
-                    imageX!!.toInt() + 25 <= bitmapWidth && imageY!!.toInt() + 25 <= bitmapHeight) {
+                    imageX!!.toInt() + 25 <= bitmapWidth && imageY!!.toInt() + 25 <= bitmapHeight
+                ) {
                     val croppedBitmap =
                         Bitmap.createBitmap(
                             bitmap,

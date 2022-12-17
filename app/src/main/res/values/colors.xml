@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="ep_white">#fefefe</color>
+    <color name="ep_white_trans">#99fefefe</color>
     <color name="ep_light_gray">#666666</color>
     <color name="ep_light_gray_trans">#99666666</color>
     <color name="ep_dark_gray">#333333</color>

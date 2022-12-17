@@ -46,6 +46,15 @@
         android:clickable="true"
         android:focusable="true"
         android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/include_message_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <include
+        android:id="@+id/include_message_layout"
+        layout="@layout/message_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@id/include_bottom_menu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

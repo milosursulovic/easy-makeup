@@ -42,6 +42,13 @@ class ProductsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.includeMessageLayout.ivClose.setOnClickListener {
+            binding.includeMessageLayout.root.visibility = View.GONE
+        }
+
+        binding.includeMessageLayout.tvContent.text = resources.getString(R.string.use_this_product)
+
+
         val args: ProductsFragmentArgs by navArgs()
         val selectedColor = args.selectedColor
 

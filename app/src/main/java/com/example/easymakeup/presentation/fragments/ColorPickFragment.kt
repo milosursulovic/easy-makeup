@@ -34,6 +34,12 @@ class ColorPickFragment : Fragment() {
     @SuppressLint("ClickableViewAccessibility", "SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.includeMessageLayout.ivClose.setOnClickListener {
+            binding.includeMessageLayout.root.visibility = View.GONE
+        }
+
+        binding.includeMessageLayout.tvContent.text = resources.getString(R.string.tap_on_face)
+
         binding.includeStepLayout.customStep.setStep(2)
         val args: ColorPickFragmentArgs by navArgs()
         val capturedImage = args.capturedImage

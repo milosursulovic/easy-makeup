@@ -10,4 +10,6 @@
     <string name="bought_successfully_1">You bought</string>
     <string name="bought_successfully_2">successfully</string>
     <string name="step">STEP</string>
+    <string name="tap_on_face">Tap on your face where you like your skin tone most</string>
+    <string name="use_this_product">Use this product to achieve your wanted skin tone</string>
 </resources>
