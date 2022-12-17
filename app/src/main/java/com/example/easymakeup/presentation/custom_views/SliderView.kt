@@ -78,18 +78,20 @@ class SliderView(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent?): Boolean {
-        val x = event?.x
-        val y = event?.y
+        if (event?.action == MotionEvent.ACTION_DOWN) {
+            val x = event.x
+            val y = event.y
 
-        if (y!! > height / 3 && y < 2 * height / 3 && x!! > 0 && x < width / 6) {
-            minusClickListener?.let {
-                it(color)
+            if (y > height / 3 && y < 2 * height / 3 && x > 0 && x < width / 6) {
+                minusClickListener?.let {
+                    it(color)
+                }
             }
-        }
 
-        if (x!! > 5 * width / 6f && x < width && y > height / 4 && y < 3 * height / 4) {
-            plusClickListener?.let {
-                it(color)
+            if (x > 5 * width / 6f && x < width && y > height / 4 && y < 3 * height / 4) {
+                plusClickListener?.let {
+                    it(color)
+                }
             }
         }
 

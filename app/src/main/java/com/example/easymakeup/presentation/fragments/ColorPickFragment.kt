@@ -3,6 +3,7 @@ package com.example.easymakeup.presentation.fragments
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,8 @@ import com.example.easymakeup.R
 import com.example.easymakeup.databinding.FragmentColorPickBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
+
+private const val TAG = "debugTag"
 
 @AndroidEntryPoint
 class ColorPickFragment : Fragment() {
@@ -52,10 +55,12 @@ class ColorPickFragment : Fragment() {
 
         binding.sliderView.setMinusClickListener { color ->
             binding.colorView.setColor(color)
+            Log.d(TAG, "minus")
         }
 
         binding.sliderView.setPlusClickListener { color ->
             binding.colorView.setColor(color)
+            Log.d(TAG, "plus")
         }
 
         binding.includeBottomMenu.run {
