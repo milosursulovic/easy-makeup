@@ -31,6 +31,7 @@ class CameraActivity : AppCompatActivity() {
 
     private val surfaceCallback = object : SurfaceHolder.Callback {
         override fun surfaceCreated(holder: SurfaceHolder) {
+            binding.surfaceView.setWillNotDraw(false)
             camera = Camera.open()
             camera.setDisplayOrientation(90)
             try {
