@@ -77,17 +77,20 @@ class StartFragment : Fragment() {
             val rawBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true)
             bitmap.recycle()
 
-            val matrix = Matrix()
-            matrix.postRotate(90f)
-            val rotatedBitmap = Bitmap.createBitmap(
-                rawBitmap,
-                0,
-                0,
-                rawBitmap.width,
-                rawBitmap.height,
-                matrix,
-                true
-            )
+            val rotatedBitmap: Bitmap = if (rawBitmap.width > rawBitmap.height) {
+                val matrix = Matrix()
+                matrix.postRotate(90f)
+                Bitmap.createBitmap(
+                    rawBitmap,
+                    0,
+                    0,
+                    rawBitmap.width,
+                    rawBitmap.height,
+                    matrix,
+                    true
+                )
+            } else Bitmap.createBitmap(rawBitmap)
+
             rawBitmap.recycle()
 
             val bundle = Bundle().apply {
