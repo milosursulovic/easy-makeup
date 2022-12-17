@@ -39,7 +39,7 @@
     <com.example.easymakeup.presentation.custom_views.SliderView
         android:id="@+id/slider_view"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="40dp"
         android:layout_margin="16dp"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/include_bottom_menu"

@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -22,8 +21,6 @@ import javax.inject.Inject
 class ColorPickFragment : Fragment() {
 
     private lateinit var binding: FragmentColorPickBinding
-
-    private var selectedColor = 0
 
     @Inject
     lateinit var glide: RequestManager
@@ -75,13 +72,8 @@ class ColorPickFragment : Fragment() {
             false
         }
 
-        binding.sliderView.setMinusClickListener { color ->
-            selectedColor = color
-        }
-
-        binding.sliderView.setPlusClickListener { color ->
-            selectedColor = color
-            Toast.makeText(activity, "working", Toast.LENGTH_SHORT).show()
+        binding.sliderView.setClickListener { color ->
+            binding.colorView.setColor(color)
         }
 
         binding.includeBottomMenu.run {
@@ -92,7 +84,7 @@ class ColorPickFragment : Fragment() {
             }
             tv2.setOnClickListener {
                 val bundle = Bundle().apply {
-                    putInt("selectedColor", selectedColor)
+                    putInt("selectedColor", binding.colorView.getColor())
                 }
                 findNavController().navigate(
                     R.id.action_colorPickFragment_to_productsFragment,

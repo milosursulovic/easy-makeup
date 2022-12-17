@@ -1,4 +1,4 @@
-package com.example.easymakeup
+package com.example.easymakeup.presentation.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

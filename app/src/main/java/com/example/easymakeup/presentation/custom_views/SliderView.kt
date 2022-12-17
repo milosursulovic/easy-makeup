@@ -25,9 +25,8 @@ class SliderView(context: Context, attrs: AttributeSet) : View(context, attrs) {
     }
 
     private val mask = 0x010000
-
-    private val startColor = 0x000000
-    private val endColor = 0xff0000
+    private val minimalColor = 0x000000
+    private val maximalColor = 0xff0000
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         setMeasuredDimension(
@@ -69,15 +68,10 @@ class SliderView(context: Context, attrs: AttributeSet) : View(context, attrs) {
         }
     }
 
-    private var minusClickListener: ((Int) -> Unit)? = null
-    private var plusClickListener: ((Int) -> Unit)? = null
+    private var clickListener: ((Int) -> Unit)? = null
 
-    fun setMinusClickListener(minusClickListener: (Int) -> Unit) {
-        this.minusClickListener = minusClickListener
-    }
-
-    fun setPlusClickListener(plusClickListener: (Int) -> Unit) {
-        this.plusClickListener = plusClickListener
+    fun setClickListener(clickListener: (Int) -> Unit) {
+        this.clickListener = clickListener
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
@@ -85,14 +79,22 @@ class SliderView(context: Context, attrs: AttributeSet) : View(context, attrs) {
         val y = event?.y
 
         if (y!! > height / 3 && y < 2 * height / 3 && x!! > 0 && x < width / 6) {
-            minusClickListener?.let {
-                it(color - mask)
+            val result = color - mask
+
+            if (result > minimalColor) {
+                clickListener?.let {
+                    it(result)
+                }
             }
         }
 
         if (x!! > 5 * width / 6f && x < width && y > height / 4 && y < 3 * height / 4) {
-            plusClickListener?.let {
-                it(color + mask)
+            val result = color + mask
+
+            if (result < maximalColor) {
+                clickListener?.let {
+                    it(color + mask)
+                }
             }
         }
 
