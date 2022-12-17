@@ -4,7 +4,9 @@
     android:layout_height="wrap_content"
     android:background="@color/ep_light_gray_trans"
     android:orientation="horizontal"
-    android:padding="32dp">
+    android:padding="32dp"
+    android:clickable="true"
+    android:focusable="true">
 
     <TextView
         android:id="@+id/tv_1"

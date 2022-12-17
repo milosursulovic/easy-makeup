@@ -19,7 +19,7 @@ class ColorView(context: Context, attrs: AttributeSet) : View(context, attrs) {
     private val borderCirclePaint = Paint().apply {
         color = Color.TRANSPARENT
         style = Paint.Style.STROKE
-        strokeWidth = 3f
+        strokeWidth = 5f
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
