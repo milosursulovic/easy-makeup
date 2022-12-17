@@ -11,7 +11,7 @@ class CustomSurfaceView(context: Context, attrs: AttributeSet) : SurfaceView(con
     private val paint = Paint().apply {
         style = Paint.Style.STROKE
         strokeWidth = 5f
-        color = Color.GREEN
+        color = Color.WHITE
     }
 
     override fun onDraw(canvas: Canvas?) {
