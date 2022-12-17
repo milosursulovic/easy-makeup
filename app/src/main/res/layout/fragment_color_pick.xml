@@ -31,24 +31,24 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginBottom="8dp"
+        android:clickable="true"
+        android:focusable="true"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/slider_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:clickable="true"
-        android:focusable="true"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.example.easymakeup.presentation.custom_views.SliderView
         android:id="@+id/slider_view"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_margin="16dp"
+        android:clickable="true"
+        android:focusable="true"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/include_bottom_menu"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:clickable="true"
-        android:focusable="true"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <include
         android:id="@+id/include_bottom_menu"

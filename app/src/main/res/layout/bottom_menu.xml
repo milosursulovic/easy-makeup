@@ -3,10 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/ep_light_gray_trans"
-    android:orientation="horizontal"
-    android:padding="32dp"
     android:clickable="true"
-    android:focusable="true">
+    android:focusable="true"
+    android:orientation="horizontal"
+    android:padding="32dp">
 
     <TextView
         android:id="@+id/tv_1"
