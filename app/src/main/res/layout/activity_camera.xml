@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".presentation.activities.CameraActivity">
 
-    <com.example.easymakeup.presentation.custom_views.CustomSurfaceView
+    <com.example.easymakeup.presentation.custom_views.CameraSurfaceView
         android:id="@+id/surface_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

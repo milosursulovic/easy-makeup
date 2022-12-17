@@ -1,5 +1,6 @@
 package com.example.easymakeup.presentation.custom_views
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
@@ -74,6 +75,7 @@ class SliderView(context: Context, attrs: AttributeSet) : View(context, attrs) {
         this.clickListener = clickListener
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         val x = event?.x
         val y = event?.y

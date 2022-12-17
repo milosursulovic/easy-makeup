@@ -7,7 +7,7 @@ import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.SurfaceView
 
-class CustomSurfaceView(context: Context, attrs: AttributeSet) : SurfaceView(context, attrs) {
+class CameraSurfaceView(context: Context, attrs: AttributeSet) : SurfaceView(context, attrs) {
     private val paint = Paint().apply {
         style = Paint.Style.STROKE
         strokeWidth = 5f
