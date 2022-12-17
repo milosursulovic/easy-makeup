@@ -40,38 +40,40 @@ class ImageColorPickerView(context: Context, attrs: AttributeSet) :
                 val bitmapHeight = bitmap?.height
                 imageX = viewX!! * bitmapWidth!! / viewWidth
                 imageY = viewY!! * bitmapHeight!! / viewHeight
-                //ovde pravi problem - out of bounds, nije jos fixano
-                val croppedBitmap =
-                    Bitmap.createBitmap(
-                        bitmap,
-                        imageX!!.toInt() - 25,
-                        imageY!!.toInt() - 25,
-                        50,
-                        50,
-                        null,
-                        true
-                    )
-                val outputBitmap = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888)
-                val canvas = Canvas(outputBitmap)
-                val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-                    color = Color.TRANSPARENT
+                if (imageX!!.toInt() - 25 > 0 && imageY!!.toInt() - 25 > 0 &&
+                    imageX!!.toInt() + 25 <= bitmapWidth && imageY!!.toInt() + 25 <= bitmapHeight) {
+                    val croppedBitmap =
+                        Bitmap.createBitmap(
+                            bitmap,
+                            imageX!!.toInt() - 25,
+                            imageY!!.toInt() - 25,
+                            50,
+                            50,
+                            null,
+                            true
+                        )
+                    val outputBitmap = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888)
+                    val canvas = Canvas(outputBitmap)
+                    val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+                        color = Color.TRANSPARENT
+                    }
+                    canvas.drawCircle(25f, 25f, 50f, paint)
+                    paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
+                    canvas.drawBitmap(croppedBitmap, 0f, 0f, paint)
+                    val pixels = IntArray(2500)
+                    croppedBitmap.getPixels(pixels, 0, 50, 0, 0, 50, 50)
+                    val dominantPixel = mostCommonPixel(pixels)
+
+                    chosenColorListener?.let {
+                        it(dominantPixel)
+
+                        outputBitmap.recycle()
+                        croppedBitmap.recycle()
+                    }
+
+                    circlePaint.color = Color.WHITE
+                    postInvalidate()
                 }
-                canvas.drawCircle(25f, 25f, 50f, paint)
-                paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
-                canvas.drawBitmap(croppedBitmap, 0f, 0f, paint)
-                val pixels = IntArray(2500)
-                croppedBitmap.getPixels(pixels, 0, 50, 0, 0, 50, 50)
-                val dominantPixel = mostCommonPixel(pixels)
-
-                chosenColorListener?.let {
-                    it(dominantPixel)
-
-                    outputBitmap.recycle()
-                    croppedBitmap.recycle()
-                }
-
-                circlePaint.color = Color.WHITE
-                postInvalidate()
             }
             MotionEvent.ACTION_UP -> {
                 circlePaint.color = Color.TRANSPARENT
