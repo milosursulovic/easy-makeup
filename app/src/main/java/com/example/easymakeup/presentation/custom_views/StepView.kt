@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
+import com.example.easymakeup.presentation.custom_views.utils.Measures
 
 class StepView(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
@@ -44,27 +45,10 @@ class StepView(context: Context, attrs: AttributeSet) : View(context, attrs) {
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        val desiredWidth = 200;
-        val desiredHeight = 200;
-
-        val widthMode = MeasureSpec.getMode(widthMeasureSpec);
-        val widthSize = MeasureSpec.getSize(widthMeasureSpec);
-        val heightMode = MeasureSpec.getMode(heightMeasureSpec);
-        val heightSize = MeasureSpec.getSize(heightMeasureSpec);
-
-        val width = when (widthMode) {
-            MeasureSpec.EXACTLY -> widthSize
-            MeasureSpec.AT_MOST -> desiredWidth.coerceAtMost(widthSize)
-            else -> desiredWidth
-        }
-
-        val height = when (heightMode) {
-            MeasureSpec.EXACTLY -> heightSize
-            MeasureSpec.AT_MOST -> desiredHeight.coerceAtMost(heightSize)
-            else -> desiredHeight
-        }
-
-        setMeasuredDimension(width, height);
+        setMeasuredDimension(
+            Measures.getWidth(1000, widthMeasureSpec),
+            Measures.getHeight(200, heightMeasureSpec)
+        )
     }
 
     override fun onDraw(canvas: Canvas?) {
@@ -72,34 +56,34 @@ class StepView(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
         canvas?.run {
             drawCircle(
-                (width / 6).toFloat(),
-                (height / 2).toFloat(),
+                width / 6f,
+                height / 2f,
                 radius,
                 paintMap[1] ?: strokePaint
             )
             drawLine(
                 width / 6 + radius,
-                (height / 2).toFloat(),
+                height / 2f,
                 width / 2 - radius,
-                (height / 2).toFloat(),
+                height / 2f,
                 linePaint
             )
             drawCircle(
-                (width / 2).toFloat(),
-                (height / 2).toFloat(),
+                width / 2f,
+                height / 2f,
                 radius,
                 paintMap[2] ?: strokePaint
             )
             drawLine(
                 width / 2 + radius,
-                (height / 2).toFloat(),
+                height / 2f,
                 5 * width / 6 - radius,
-                (height / 2).toFloat(),
+                height / 2f,
                 linePaint
             )
             drawCircle(
-                (5 * width / 6).toFloat(),
-                (height / 2).toFloat(),
+                5 * width / 6f,
+                height / 2f,
                 radius,
                 paintMap[3] ?: strokePaint
             )

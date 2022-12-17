@@ -44,8 +44,8 @@ class ColorView(context: Context, attrs: AttributeSet) : View(context, attrs) {
         super.onDraw(canvas)
         canvas?.run {
             drawRect(rect, rectPaint)
-            drawCircle((width / 2).toFloat(), (height / 2).toFloat(), 100f, circlePaint)
-            drawCircle((width / 2).toFloat(), (height / 2).toFloat(), 100f, borderCirclePaint)
+            drawCircle(width / 2f, height / 2f, 100f, circlePaint)
+            drawCircle(width / 2f, height / 2f, 100f, borderCirclePaint)
         }
     }
 }
