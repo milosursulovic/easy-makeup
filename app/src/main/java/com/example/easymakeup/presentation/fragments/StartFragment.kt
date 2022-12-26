@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.easymakeup.presentation.fragments
 
 import android.Manifest
@@ -26,7 +28,6 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@Suppress("DEPRECATION")
 @AndroidEntryPoint
 class StartFragment : Fragment() {
 
