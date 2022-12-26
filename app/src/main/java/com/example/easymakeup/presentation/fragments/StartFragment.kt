@@ -3,18 +3,18 @@ package com.example.easymakeup.presentation.fragments
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.Matrix
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.easymakeup.R
 import com.example.easymakeup.databinding.FragmentStartBinding
 import com.example.easymakeup.presentation.activities.CameraActivity
+import com.example.easymakeup.util.BitmapParser
+import com.example.easymakeup.util.Resource
 import com.karumi.dexter.DexterBuilder
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionDeniedResponse
@@ -22,6 +22,8 @@ import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @Suppress("DEPRECATION")
@@ -33,6 +35,8 @@ class StartFragment : Fragment() {
 
     @Inject
     lateinit var dexter: DexterBuilder.Permission
+
+    private var job: Job? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -72,31 +76,26 @@ class StartFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == imageRequestCode && resultCode == Activity.RESULT_OK) {
             val byteArray = data?.extras?.get("data") as ByteArray
-
-            val bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
-            val rawBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true)
-            bitmap.recycle()
-
-            val rotatedBitmap: Bitmap = if (rawBitmap.width > rawBitmap.height) {
-                val matrix = Matrix()
-                matrix.postRotate(90f)
-                Bitmap.createBitmap(
-                    rawBitmap,
-                    0,
-                    0,
-                    rawBitmap.width,
-                    rawBitmap.height,
-                    matrix,
-                    true
-                )
-            } else Bitmap.createBitmap(rawBitmap)
-
-            rawBitmap.recycle()
-
-            val bundle = Bundle().apply {
-                putParcelable("capturedImage", rotatedBitmap)
+            job?.cancel()
+            job = lifecycleScope.launch {
+                BitmapParser.parseByteArray(byteArray).collect { result ->
+                    when (result) {
+                        is Resource.Loading -> Unit
+                        is Resource.Success -> {
+                            result.data?.let { bitmap ->
+                                val bundle = Bundle().apply {
+                                    putParcelable("capturedImage", bitmap)
+                                }
+                                findNavController().navigate(
+                                    R.id.action_startFragment_to_captureFragment,
+                                    bundle
+                                )
+                            }
+                        }
+                        is Resource.Error -> Unit
+                    }
+                }
             }
-            findNavController().navigate(R.id.action_startFragment_to_captureFragment, bundle)
         }
     }
 }
