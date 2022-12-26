@@ -15,7 +15,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.easymakeup.R
 import com.example.easymakeup.databinding.FragmentStartBinding
 import com.example.easymakeup.presentation.activities.CameraActivity
-import com.example.easymakeup.util.BitmapParser
+import com.example.easymakeup.util.ByteArrayParser
 import com.example.easymakeup.util.Resource
 import com.karumi.dexter.DexterBuilder
 import com.karumi.dexter.PermissionToken
@@ -77,9 +77,10 @@ class StartFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == imageRequestCode && resultCode == Activity.RESULT_OK) {
             val byteArray = data?.extras?.get("data") as ByteArray
+            val parser = ByteArrayParser(context!!, byteArray)
             job?.cancel()
             job = lifecycleScope.launch {
-                BitmapParser.parseByteArray(byteArray).collect { result ->
+                parser.parse().collect { result ->
                     when (result) {
                         is Resource.Loading -> Unit
                         is Resource.Success -> {

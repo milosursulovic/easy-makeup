@@ -12,4 +12,5 @@
     <string name="step">STEP</string>
     <string name="tap_on_face">Tap on your face where you like your skin tone most</string>
     <string name="use_this_product">Use this product to achieve your wanted skin tone</string>
+    <string name="unknown_error">An unknown error happened</string>
 </resources>
