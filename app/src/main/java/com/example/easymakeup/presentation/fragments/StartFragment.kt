@@ -77,7 +77,7 @@ class StartFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == imageRequestCode && resultCode == Activity.RESULT_OK) {
             val byteArray = data?.extras?.get("data") as ByteArray
-            val parser = ByteArrayParser(context!!, byteArray)
+            val parser = ByteArrayParser(requireContext(), byteArray)
             job?.cancel()
             job = lifecycleScope.launch {
                 parser.parse().collect { result ->
