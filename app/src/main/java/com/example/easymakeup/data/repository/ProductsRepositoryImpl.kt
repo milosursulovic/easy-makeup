@@ -7,5 +7,5 @@ import com.example.easymakeup.domain.repository.ProductsRepository
 class ProductsRepositoryImpl(
     private val db: ProductsDb
 ) : ProductsRepository {
-    override fun getProducts(): List<Product> = db.getProducts()
+    override suspend fun getProducts(): List<Product> = db.getProducts()
 }

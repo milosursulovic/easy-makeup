@@ -14,6 +14,7 @@ import com.example.easymakeup.R
 import com.example.easymakeup.databinding.FragmentProductsBinding
 import com.example.easymakeup.domain.model.Product
 import com.example.easymakeup.presentation.adapters.ProductsAdapter
+import com.example.easymakeup.presentation.products.ProductEvent
 import com.example.easymakeup.presentation.view_models.ProductsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -48,12 +49,14 @@ class ProductsFragment : Fragment() {
 
         binding.includeMessageLayout.tvContent.text = resources.getString(R.string.use_this_product)
 
-
         val args: ProductsFragmentArgs by navArgs()
         val selectedColor = args.selectedColor
 
         binding.includeStepLayout.customStep.setStep(3)
-        productsAdapter.differ.submitList(productsViewModel.getProducts())
+        productsViewModel.setStateChangeListener { state ->
+            productsAdapter.differ.submitList(state.products)
+        }
+        productsViewModel.triggerEvent(ProductEvent.Init)
         productsAdapter.setClickListener { itemView, product ->
             cacheView?.setBackgroundResource(0)
             itemView.setBackgroundResource(R.drawable.border)
