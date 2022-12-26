@@ -10,10 +10,19 @@ import com.example.easymakeup.presentation.custom_views.utils.Measures
 
 class ColorChangeView(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
-    private val path = Path()
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = Color.WHITE
     }
+
+    private val overlayPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        color = Color.BLACK
+    }
+
+    private val minusRect = RectF()
+    private val sliderRect = RectF()
+    private val overlayRect = RectF()
+    private val plusRect1 = RectF()
+    private val plusRect2 = RectF()
 
     private var color = Color.TRANSPARENT
     private var currentBrightness = 0f
@@ -35,29 +44,47 @@ class ColorChangeView(context: Context, attrs: AttributeSet) : View(context, att
 
     override fun onDraw(canvas: Canvas?) {
         canvas?.run {
-            path.run {
-                //minus
-                moveTo(0f, height / 3f)
-                lineTo(width / 6f, height / 3f)
-                lineTo(width / 6f, 2 * height / 3f)
-                lineTo(0f, 2 * height / 3f)
-                lineTo(0f, height / 3f)
-
-                //plus
-                moveTo(5 * width / 6f, height / 3f)
-                lineTo(width.toFloat(), height / 3f)
-                lineTo(width.toFloat(), 2 * height / 3f)
-                lineTo(5 * width / 6f, 2 * height / 3f)
-                lineTo(5 * width / 6f, height / 3f)
-
-                moveTo(21 * width / 24f, height / 4f)
-                lineTo(23 * width / 24f, height / 4f)
-                lineTo(23 * width / 24f, 3 * height / 4f)
-                lineTo(21 * width / 24f, 3 * height / 4f)
-                lineTo(21 * width / 24f, height / 4f)
+            minusRect.run {
+                left = 0f
+                top = height / 3f
+                right = width / 6f
+                bottom = 2 * height / 3f
             }
 
-            drawPath(path, paint)
+            sliderRect.run {
+                left = width / 4f
+                top = height / 3f
+                right = 3 * width / 4f
+                bottom = 2 * height / 3f
+            }
+
+            plusRect1.run {
+                left = 5 * width / 6f
+                top = height / 3f
+                right = width.toFloat()
+                bottom = 2 * height / 3f
+            }
+
+            plusRect2.run {
+                left = 21 * width / 24f
+                top = height / 4f
+                right = 23 * width / 24f
+                bottom = 3 * height / 4f
+            }
+
+            drawRect(minusRect, paint)
+            drawRect(sliderRect, paint)
+            drawRect(plusRect1, paint)
+            drawRect(plusRect2, paint)
+            if (currentBrightness > 0f) {
+                overlayRect.run {
+                    left = width / 4f
+                    top = height / 3f
+                    right = width / 4f + (3 * width / 4f - width / 4f) * currentBrightness
+                    bottom = 2 * height / 3f
+                }
+                drawRect(overlayRect, overlayPaint)
+            }
         }
     }
 
@@ -82,6 +109,7 @@ class ColorChangeView(context: Context, attrs: AttributeSet) : View(context, att
                 minusClickListener?.let {
                     if (currentBrightness > 0f) {
                         currentBrightness -= 0.1f
+                        currentBrightness = String.format("%.1f", currentBrightness).toFloat()
                         val tempColor = getBrightenColor()
                         it(tempColor)
                     }
@@ -92,6 +120,7 @@ class ColorChangeView(context: Context, attrs: AttributeSet) : View(context, att
                 plusClickListener?.let {
                     if (currentBrightness < 1f) {
                         currentBrightness += 0.1f
+                        currentBrightness = String.format("%.1f", currentBrightness).toFloat()
                         val tempColor = getBrightenColor()
                         it(tempColor)
                     }

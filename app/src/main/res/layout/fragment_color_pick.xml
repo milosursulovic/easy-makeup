@@ -33,10 +33,9 @@
         android:clickable="true"
         android:focusable="true"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/slider_view"
+        app:layout_constraintBottom_toTopOf="@id/slider_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/slider_view" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.example.easymakeup.presentation.custom_views.ColorChangeView
         android:id="@+id/slider_view"
