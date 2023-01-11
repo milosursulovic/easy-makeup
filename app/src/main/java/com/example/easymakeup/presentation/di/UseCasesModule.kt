@@ -1,5 +1,6 @@
 package com.example.easymakeup.presentation.di
 
+import android.app.Application
 import com.example.easymakeup.domain.repository.ProductsRepository
 import com.example.easymakeup.domain.use_cases.GetProductsUseCase
 import dagger.Module
@@ -13,6 +14,9 @@ import javax.inject.Singleton
 object UseCasesModule {
     @Provides
     @Singleton
-    fun providesGetProductsUseCase(repository: ProductsRepository): GetProductsUseCase =
-        GetProductsUseCase(repository)
+    fun providesGetProductsUseCase(
+        app: Application,
+        repository: ProductsRepository
+    ): GetProductsUseCase =
+        GetProductsUseCase(app, repository)
 }

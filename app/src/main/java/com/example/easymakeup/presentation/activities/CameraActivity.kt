@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.easymakeup.presentation.activities
 
 import android.app.Activity
@@ -10,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.easymakeup.databinding.ActivityCameraBinding
 import java.io.IOException
 
-@Suppress("DEPRECATION")
 class CameraActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCameraBinding
     private lateinit var surfaceHolder: SurfaceHolder

@@ -19,6 +19,7 @@ class StepView(context: Context, attrs: AttributeSet) : View(context, attrs) {
     private val linePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = Color.WHITE
         style = Paint.Style.FILL
+        strokeWidth = 10f
     }
     private val fillPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = Color.WHITE
